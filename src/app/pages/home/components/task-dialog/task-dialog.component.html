@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-header">
+    {{ title }}
+  </div>
+
+  <div class="container-block">
+    <form [formGroup]="taskForm">
+      <mat-form-field class="input-width">
+        <input matInput placeholder="Title" formControlName="title" type="text">
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <textarea matInput placeholder="Description" formControlName="descr"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <input matInput placeholder="Place name" formControlName="place" type="text">
+      </mat-form-field>
+
+      <mat-form-field class="input-width">
+        <input matInput placeholder="Address" formControlName="address" type="text">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="container-footer">
+    <button mat-button (click)="addTask()">Add</button>
+    <button mat-button>Reset</button>
+    <button mat-button (click)="closeDialog()">Close</button>
+  </div>
+
+</div>

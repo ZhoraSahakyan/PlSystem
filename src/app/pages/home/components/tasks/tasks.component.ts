@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { TasksService } from '../../../../core/services';
-import { MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-tasks',
@@ -19,7 +21,8 @@ export class TasksComponent implements OnInit {
   ];
   public selectValue: string = 'title';
 
-  constructor(private taskService: TasksService) {
+  constructor(private taskService: TasksService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -50,6 +53,25 @@ export class TasksComponent implements OnInit {
     const filterName = this.selectValue;
     const filteredTasks = this.allTasks.filter(item => item[filterName].toLowerCase().includes(value.trim().toLowerCase()));
     this.matFilter(filteredTasks);
+  }
+
+  /**
+   * @desc open modal for adding or changing tasks
+   */
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '40%',
+      data: {
+        title: 'Add New Task'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.allTasks.push(result);
+
+      this.matFilter(this.allTasks);
+    });
   }
 
 }
