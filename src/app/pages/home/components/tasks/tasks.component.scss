@@ -1,0 +1,27 @@
+@import "../../../../../scss/variables";
+
+table {
+  padding: 15px;
+  box-shadow: none ;
+  width: 100%;
+
+  & .t-header {
+    background-color: $green;
+
+    & th {
+      color: $white;
+    }
+  }
+
+  & .complete {
+    background-color: $green;
+  }
+
+  & .failed {
+    background-color: $red;
+  }
+
+  & .pending {
+    background-color: $blue;
+  }
+}
