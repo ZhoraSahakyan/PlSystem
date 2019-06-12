@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSortModule, MatTableModule } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -17,6 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatSortModule,
+    MatSelectModule,
   ],
   exports: [
     MatInputModule,
@@ -26,6 +28,8 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     HeaderComponent,
     MatTableModule,
+    MatSortModule,
+    MatSelectModule,
   ]
 })
 export class SharedModule {

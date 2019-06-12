@@ -1,5 +1,13 @@
 @import "../../../../../scss/variables";
 
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  width: 25%;
+}
+
 table {
   padding: 15px;
   box-shadow: none ;
