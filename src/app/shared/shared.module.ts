@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +23,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/ma
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    HeaderComponent,
   ]
 })
 export class SharedModule {
