@@ -6,7 +6,9 @@ import {
   MatButtonModule, MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule, MatProgressSpinnerModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatSortModule,
   MatTableModule

@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './components/root/app.component';
+import { AuthService, TasksService } from './core/services';
 import { AppRoutingModule } from './app-routing.module';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from './core/services';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { AuthService } from './core/services';
   ],
   providers: [
     CookieService,
-    AuthService
+    AuthService,
+    TasksService
   ],
   bootstrap: [AppComponent]
 })
