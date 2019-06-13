@@ -18,7 +18,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Log in using the email address and password below.
 
-User Email - user@gmai.com
+User Email - user@gmail.com
 User password - 123456789
 
 ## Build
