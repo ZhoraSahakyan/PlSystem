@@ -68,9 +68,11 @@ export class TasksComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.allTasks.push(result);
+      if (result) {
+        this.allTasks.push(result);
 
-      this.matFilter(this.allTasks);
+        this.matFilter(this.allTasks);
+      }
     });
   }
 

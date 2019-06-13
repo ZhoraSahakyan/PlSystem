@@ -20,7 +20,7 @@ export class TaskDialogComponent implements OnInit {
     this.title = data.title;
     this.taskForm = this.formBuilder.group({
       title: ['', Validators.required],
-      descr: ['', Validators.required],
+      desc: ['', Validators.required],
       date: ['', Validators.required],
       place: ['', Validators.required],
       address: ['', Validators.required]
@@ -35,12 +35,12 @@ export class TaskDialogComponent implements OnInit {
     const data = {
       ...this.taskForm.getRawValue()
     };
-    const currentDate = new Date().toLocaleString();
+    const currentDate = new Date().toISOString();
 
-    if (data.date.toLocaleString() < currentDate) {
-      data['status'] = 0;
+    if (data.date.toISOString() < currentDate) {
+      data.status = 0;
     } else {
-      data['status'] = 10;
+      data.status = 10;
     }
 
     data.date = data.date.toLocaleString();
