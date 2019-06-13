@@ -30,8 +30,11 @@
   </div>
 
   <div class="container-footer">
-    <button mat-button (click)="addTask()">Add</button>
-    <button mat-button>Reset</button>
+    <button *ngIf="!isEdit;else edit" mat-button (click)="addTask()" [disabled]="taskForm.invalid">Add</button>
+    <ng-template #edit>
+      <button mat-button [disabled]="taskForm.invalid" (click)="addTask()">Save</button>
+    </ng-template>
+    <button mat-button (click)="resetForm()">Reset</button>
     <button mat-button (click)="closeDialog()">Close</button>
   </div>
 

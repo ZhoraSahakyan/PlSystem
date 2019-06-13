@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./task-dialog.component.scss']
 })
 export class TaskDialogComponent implements OnInit {
+  public isEdit: boolean = false;
   public title: string;
   public taskForm: FormGroup;
 
@@ -19,17 +20,29 @@ export class TaskDialogComponent implements OnInit {
 
     this.title = data.title;
     this.taskForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      desc: ['', Validators.required],
-      date: ['', Validators.required],
-      place: ['', Validators.required],
-      address: ['', Validators.required]
+      title: [data.el ? data.el.title : '', Validators.required],
+      desc: [data.el ? data.el.desc : '', Validators.required],
+      date: [data.el ? data.el.date : '', Validators.required],
+      place: [data.el ? data.el.place : '', Validators.required],
+      address: [data.el ? data.el.address : '', Validators.required]
     });
+
+    if (data.isEdit) {
+      this.isEdit = true;
+    }
   }
+
+  /**
+   * @desc closing the dialog
+   */
 
   public closeDialog(): void {
     this.dialogRef.close();
   }
+
+  /**
+   * @desc adding or editing task
+   */
 
   public addTask(): void {
     const data = {
@@ -45,7 +58,20 @@ export class TaskDialogComponent implements OnInit {
 
     data.date = data.date.toLocaleString();
 
+    if (this.title.includes('Edit')) {
+      data.isEdit = true;
+      data.index = this.data.index;
+    }
+
     this.dialogRef.close({...data});
+  }
+
+  /**
+   * @desc reset form
+   */
+
+  public resetForm(): void {
+    this.taskForm.reset();
   }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ import { TasksService } from '../../../../core/services';
 export class TasksComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   public allTasks: any[];
-  public displayedColumns: string[] = ['id', 'title', 'desc', 'status', 'date', 'place', 'address'];
+  public displayedColumns: string[] = ['id', 'title', 'desc', 'status', 'date', 'place', 'address', 'remove'];
   public dataSource = new MatTableDataSource([]);
   public filterList: any[] = [
     {value: 'title', viewValue: 'Title'},
@@ -49,7 +49,7 @@ export class TasksComponent implements OnInit {
    * @param value - text from search field
    * @desc will make a filtering tasks by word
    */
-  public filter(value: any) {
+  public filter(value: any): void {
     const filterName = this.selectValue;
     const filteredTasks = this.allTasks.filter(item => item[filterName].toLowerCase().includes(value.trim().toLowerCase()));
     this.matFilter(filteredTasks);
@@ -71,6 +71,31 @@ export class TasksComponent implements OnInit {
       if (result) {
         this.allTasks.push(result);
 
+        this.matFilter(this.allTasks);
+      }
+    });
+  }
+
+
+  /**
+   * @param element - task
+   * @param i - index of task
+   * @desc open modal for editing task by index
+   */
+  public changeTask(element: any, i: number): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '40%',
+      data: {
+        isEdit: true,
+        title: `Edit ${element.title} Task`,
+        el: element,
+        index: i
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.allTasks[result.index] = result;
         this.matFilter(this.allTasks);
       }
     });
