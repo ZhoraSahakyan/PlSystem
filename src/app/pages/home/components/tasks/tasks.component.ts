@@ -20,6 +20,11 @@ export class TasksComponent implements OnInit {
     {value: 'address', viewValue: 'Address'}
   ];
   public selectValue: string = 'title';
+  public statuses: any[] = [
+    {value: 0, viewValue: 'Failed'},
+    {value: 1, viewValue: 'Complete'},
+    {value: 10, viewValue: 'Pending'}
+  ];
 
   constructor(private taskService: TasksService,
               public dialog: MatDialog) {
@@ -99,6 +104,16 @@ export class TasksComponent implements OnInit {
         this.matFilter(this.allTasks);
       }
     });
+  }
+
+  /**
+   * @desc remove task by index
+   * @param index - index of task
+   */
+
+  public removeTask(index: number) {
+    this.allTasks.splice(index, 1);
+    this.matFilter(this.allTasks);
   }
 
 }
