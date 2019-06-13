@@ -12,6 +12,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatSelectModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NotifierModule
   ],
   exports: [
     MatInputModule,
@@ -43,7 +45,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatSelectModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NotifierModule
   ]
 })
 export class SharedModule {

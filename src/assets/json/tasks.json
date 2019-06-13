@@ -4,7 +4,7 @@
     "title": "Lorem Ipsum 1",
     "desc": "do something",
     "status": 10,
-    "date": "12.05.2019",
+    "date": "5.12.2019",
     "place": "Brooklyn",
     "address": "1050 Atlantic Ave"
   },
@@ -13,7 +13,7 @@
     "title": "Lorem Ipsum 2",
     "desc": "do something",
     "status": 1,
-    "date": "12.05.2019",
+    "date": "5.12.2019",
     "place": "Brooklyn",
     "address": "Brooklyn, NY 11216"
   },

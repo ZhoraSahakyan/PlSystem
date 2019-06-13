@@ -91,3 +91,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
       [ngClass]="{'complete': row.status === 1, 'failed': row.status === 0, 'pending': row.status === 10}"></tr>
 </table>
+
+
+<notifier-container></notifier-container>

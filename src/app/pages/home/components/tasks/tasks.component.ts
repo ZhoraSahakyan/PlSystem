@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { TasksService } from '../../../../core/services';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-tasks',
@@ -27,16 +28,29 @@ export class TasksComponent implements OnInit {
   ];
 
   constructor(private taskService: TasksService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private notifier: NotifierService) {
   }
 
   ngOnInit() {
     this.taskService.getTasks()
       .subscribe(res => {
         this.allTasks = res;
-        this.matFilter(res);
-      });
+        this.matFilter(this.allTasks);
 
+        for (let task of this.allTasks) {
+          const taskDate = task.date.split('.');
+          const currentMonth = new Date().getMonth();
+          const currentDate = new Date().getDate() - 1;
+          const currentYear = new Date().getFullYear();
+          if (taskDate[0] === currentMonth.toString()
+            && taskDate[1] === currentDate.toString()
+            && taskDate[2] === currentYear.toString()
+            && task.status === 10) {
+            this.notifier.notify('info', 'For today you have one task - ' + task.title);
+          }
+        }
+      });
   }
 
   /**
@@ -77,6 +91,7 @@ export class TasksComponent implements OnInit {
         this.allTasks.push(result);
 
         this.matFilter(this.allTasks);
+        this.notifier.notify('success', 'Task successfully added!');
       }
     });
   }
@@ -102,6 +117,7 @@ export class TasksComponent implements OnInit {
       if (result) {
         this.allTasks[result.index] = result;
         this.matFilter(this.allTasks);
+        this.notifier.notify('success', 'Task successfully edited!');
       }
     });
   }
@@ -112,6 +128,7 @@ export class TasksComponent implements OnInit {
    */
 
   public removeTask(index: number) {
+    this.notifier.notify('success', 'Task successfully removed!');
     this.allTasks.splice(index, 1);
     this.matFilter(this.allTasks);
   }
