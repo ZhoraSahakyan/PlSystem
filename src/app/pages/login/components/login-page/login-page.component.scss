@@ -60,5 +60,10 @@
         text-decoration: none;
       }
     }
+
+    & .spinner {
+      display: block;
+      margin: 40px auto;
+    }
   }
 }

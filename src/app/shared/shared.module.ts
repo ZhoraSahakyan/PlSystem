@@ -6,7 +6,7 @@ import {
   MatButtonModule, MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule,
+  MatInputModule, MatNativeDateModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSortModule,
   MatTableModule
@@ -31,7 +31,8 @@ import { NotifierModule } from 'angular-notifier';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NotifierModule
+    NotifierModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatInputModule,
@@ -46,7 +47,8 @@ import { NotifierModule } from 'angular-notifier';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NotifierModule
+    NotifierModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class SharedModule {

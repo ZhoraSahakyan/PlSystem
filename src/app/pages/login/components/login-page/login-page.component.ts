@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginPageComponent implements OnInit {
   public loginForm: FormGroup;
   public errorMsg: string;
+  public isLoad: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -35,16 +36,20 @@ export class LoginPageComponent implements OnInit {
   }
 
   public login() {
-    this.authService.login()
-      .subscribe(res => {
-        const formValues = this.loginForm.getRawValue();
-        if (res.email === formValues.email && res.password === formValues.password) {
-          this.cookieService.set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
-          this.router.navigateByUrl('home');
-        } else {
-          this.errorMsg = 'User not found';
-        }
-      });
-  }
+    this.isLoad = true;
 
+    setTimeout(() => {
+      this.authService.login()
+        .subscribe(res => {
+          const formValues = this.loginForm.getRawValue();
+          if (res.email === formValues.email && res.password === formValues.password) {
+            this.cookieService.set('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
+            this.router.navigateByUrl('home');
+          } else {
+            this.isLoad = false;
+            this.errorMsg = 'User not found';
+          }
+        });
+    }, 2000);
+  }
 }
